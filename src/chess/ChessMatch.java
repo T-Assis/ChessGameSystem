@@ -66,15 +66,12 @@ public class ChessMatch {
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
-		Piece capturedPiece = makeMove(source, target);
-		
+		Piece capturedPiece = makeMove(source, target);		
 		if (testCheck(currentPlayer)) {
 			undoMove(source, target, capturedPiece);
 			throw new ChessException("You can't yourself in check");
-		}
-		
+		}		
 		check = (testCheck(opponent(currentPlayer))) ? true : false;
-
 		if (testeCheckMate(opponent(currentPlayer))) {
 			checkMate = true;
 		}
@@ -102,8 +99,10 @@ public class ChessMatch {
 			throw new ChessException("The chosen piece can't move to target position");
 		}
 	}
+	
 	private Piece makeMove(Position source, Position target) {
-		Piece piece = board.removePiece(source);
+		ChessPiece piece = (ChessPiece) board.removePiece(source);
+		piece.increaseMoveCount();
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(piece, target);
 		if (capturedPiece != null) {
@@ -112,10 +111,10 @@ public class ChessMatch {
 		}
 		return capturedPiece;
 	}
-	
-	
+		
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
-		Piece piece = board.removePiece(target);
+		ChessPiece piece = (ChessPiece) board.removePiece(target);
+		piece.decreaseMoveCount();
 		board.placePiece(piece, source);
 		
 		if (capturedPiece != null) {
