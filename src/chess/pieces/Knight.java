@@ -17,7 +17,6 @@ public class Knight extends ChessPiece{
 		return "N";
 	}
 	
-	
 	private boolean canMove(Position position) {
 		ChessPiece auxChessPiece = (ChessPiece) getBoard().piece(position);
 		return auxChessPiece == null || auxChessPiece.getColor() != getColor();
@@ -33,52 +32,42 @@ public class Knight extends ChessPiece{
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		
 		auxPosition.setValues(position.getRow() - 2, position.getColumn() - 1);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		
 		auxPosition.setValues(position.getRow() - 2, position.getColumn() + 1);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		
 		auxPosition.setValues(position.getRow() - 1, position.getColumn() + 2);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		
 		auxPosition.setValues(position.getRow() + 1, position.getColumn() + 2);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		
 		auxPosition.setValues(position.getRow() + 2, position.getColumn() + 1);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
 
-	
 		auxPosition.setValues(position.getRow() + 2, position.getColumn() - 1);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
 
-		
 		auxPosition.setValues(position.getRow() + 1, position.getColumn() - 2);
 		if (getBoard().positionExists(auxPosition) && canMove(auxPosition)) {
 			matrix[auxPosition.getRow()][auxPosition.getColumn()] = true;
 		}
-
 		return matrix;
 	}
-	
-	
 	
 }
